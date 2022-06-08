@@ -15,7 +15,7 @@ public class GalaxyEyes implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		keyBind = new KeyBinding("Toggle Zoom", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_C, "Galaxy Eyes");
+		keyBind = new KeyBinding("key.galaxy_eyes.zoom", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_C, "category.galaxy_eyes.zoom");
 
 		KeyBindingHelper.registerKeyBinding(keyBind);
 	}
