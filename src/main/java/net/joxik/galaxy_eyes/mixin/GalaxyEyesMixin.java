@@ -16,11 +16,11 @@ import net.minecraft.client.render.GameRenderer;
 @Environment(EnvType.CLIENT)
 @Mixin(GameRenderer.class)
 public class GalaxyEyesMixin {
-	@Inject(method = "getFov(Lnet/minecraft/client/render/Camera;FZ)D", at = @At("RETURN"), cancellable = true)
-	public void getZoomLevel(CallbackInfoReturnable<Double> info) {
-		if (GalaxyEyes.isZooming()) {
-			double fov = info.getReturnValue();
-			info.setReturnValue(fov * GalaxyEyes.zoomLevel);
-		}
-	}
+    @Inject(method = "getFov(Lnet/minecraft/client/render/Camera;FZ)D", at = @At("RETURN"), cancellable = true)
+    public void getZoomLevel(CallbackInfoReturnable<Double> info) {
+        if (GalaxyEyes.isZooming()) {
+            double fov = info.getReturnValue();
+            info.setReturnValue(fov * GalaxyEyes.zoomLevel);
+        }
+    }
 }

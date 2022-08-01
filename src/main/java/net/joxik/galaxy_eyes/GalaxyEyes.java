@@ -9,18 +9,18 @@ import org.lwjgl.glfw.GLFW;
 
 public class GalaxyEyes implements ClientModInitializer {
 
-	private static KeyBinding keyBind;
+    private static KeyBinding keyBind;
 
-	public static final double zoomLevel = 0.23;
+    public static final double zoomLevel = 0.23;
 
-	@Override
-	public void onInitializeClient() {
-		keyBind = new KeyBinding("key.galaxy_eyes.zoom", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_C, "category.galaxy_eyes.zoom");
+    @Override
+    public void onInitializeClient() {
+        keyBind = new KeyBinding("key.galaxy_eyes.zoom", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_C, "category.galaxy_eyes.zoom");
 
-		KeyBindingHelper.registerKeyBinding(keyBind);
-	}
+        KeyBindingHelper.registerKeyBinding(keyBind);
+    }
 
-	public static boolean isZooming() {
-		return keyBind.isPressed();
-	}
+    public static boolean isZooming() {
+        return keyBind.isPressed();
+    }
 }
