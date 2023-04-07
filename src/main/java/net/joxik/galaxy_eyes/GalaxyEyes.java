@@ -16,6 +16,7 @@ public class GalaxyEyes implements ClientModInitializer {
     private static final MinecraftClient MC = MinecraftClient.getInstance();
 
     private static KeyBinding keyBind;
+    private static double zoomSensitivity = 1.0;
     private static double zoomFov = 30;
 
     @Override
@@ -26,9 +27,13 @@ public class GalaxyEyes implements ClientModInitializer {
 
     public static boolean onScroll(double vertical) {
         if (isZooming() && MC.player != null) {
-            zoomFov = Math.max(MIN_ZOOM_FOV, Math.min(MAX_ZOOM_FOV, zoomFov + (-vertical)));
+            if (MC.player.input.sneaking) {
+                zoomSensitivity = (zoomFov == 1.0) ? 4.0 : 5.0;
+            }
+            zoomFov = Math.max(MIN_ZOOM_FOV, Math.min(MAX_ZOOM_FOV, zoomFov + (-vertical * zoomSensitivity)));
             MC.player.sendMessage(Text.translatable("message.galaxy_eyes.zoom", zoomFov), true);
 
+            zoomSensitivity = 1.0;
             return true;
         }
 
