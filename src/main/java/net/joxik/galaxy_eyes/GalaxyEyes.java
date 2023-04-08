@@ -30,6 +30,8 @@ public class GalaxyEyes implements ClientModInitializer {
     public static void onZoomActivated() {
         setZoomMouseSens();
 
+        if (isZoomActive) return;
+        MC.gameRenderer.setRenderHand(false);
         isZoomActive = true;
     }
 
@@ -37,6 +39,7 @@ public class GalaxyEyes implements ClientModInitializer {
         if (!isZoomActive) return;
         resetZoomMouseSens();
 
+        MC.gameRenderer.setRenderHand(true);
         isZoomActive = false;
     }
 
