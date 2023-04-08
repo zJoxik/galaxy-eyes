@@ -16,13 +16,28 @@ public class GalaxyEyes implements ClientModInitializer {
     private static final MinecraftClient MC = MinecraftClient.getInstance();
 
     private static KeyBinding keyBind;
+    private static double mouseSensitivity = -1.0;
     private static double zoomSensitivity = 1.0;
     private static double zoomFov = 30;
+    private static boolean isZoomActive;
 
     @Override
     public void onInitializeClient() {
         keyBind = new KeyBinding("key.galaxy_eyes.zoom", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_C, "category.galaxy_eyes.zoom");
         KeyBindingHelper.registerKeyBinding(keyBind);
+    }
+
+    public static void onZoomActivated() {
+        setZoomMouseSens();
+
+        isZoomActive = true;
+    }
+
+    public static void onZoomDeactivated() {
+        if (!isZoomActive) return;
+        resetZoomMouseSens();
+
+        isZoomActive = false;
     }
 
     public static boolean onScroll(double vertical) {
@@ -46,5 +61,20 @@ public class GalaxyEyes implements ClientModInitializer {
 
     public static double getZoomFov() {
         return zoomFov;
+    }
+
+    private static void setZoomMouseSens() {
+        if (mouseSensitivity <= 0.0 || mouseSensitivity > 1.0) {
+            mouseSensitivity = MC.options.getMouseSensitivity().getValue();
+        }
+        double sens = mouseSensitivity * zoomFov * 2.3 / 100.0;
+        MC.options.getMouseSensitivity().setValue(Math.min(sens, mouseSensitivity));
+    }
+
+    private static void resetZoomMouseSens() {
+        if (mouseSensitivity > 0.0) {
+            MC.options.getMouseSensitivity().setValue(mouseSensitivity);
+            mouseSensitivity = -1.0;
+        }
     }
 }
