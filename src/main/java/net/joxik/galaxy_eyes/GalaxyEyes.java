@@ -3,9 +3,11 @@ package net.joxik.galaxy_eyes;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.option.KeyBinding;
+import net.minecraft.util.Formatting;
 
 import org.lwjgl.glfw.GLFW;
 
@@ -49,7 +51,7 @@ public class GalaxyEyes implements ClientModInitializer {
                 zoomSensitivity = (zoomFov == 1.0) ? 4.0 : 5.0;
             }
             zoomFov = Math.max(MIN_ZOOM_FOV, Math.min(MAX_ZOOM_FOV, zoomFov + (-vertical * zoomSensitivity)));
-            MC.player.sendMessage(Text.translatable("message.galaxy_eyes.zoom", zoomFov), true);
+            MC.player.sendMessage(Text.translatable("message.galaxy_eyes.zoom", zoomFov).fillStyle(Style.EMPTY.withColor(Formatting.GREEN)), true);
 
             zoomSensitivity = 1.0;
             return true;
