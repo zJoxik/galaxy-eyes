@@ -1,36 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "galaxy_eyes",
+  "id": "galaxyeyes",
   "version": "${version}",
-
   "name": "Galaxy Eyes",
-  "description": "Just a simple zoom",
+  "description": "Just another zoom mod",
   "authors": [
     "Joxik"
   ],
   "contact": {
     "homepage": "",
-    "sources": "https://github.com/zJoxik/galaxy_eyes"
+    "sources": "https://github.com/zJoxik/galaxy-eyes"
   },
-
   "license": "MIT",
-  "icon": "assets/galaxy_eyes/icon.png",
-
+  "icon": "assets/galaxyeyes/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "net.joxik.galaxy_eyes.GalaxyEyes"
+      "net.joxik.galaxyeyes.GalaxyEyes"
     ]
   },
   "mixins": [
-    "galaxy_eyes.mixins.json"
+    "galaxyeyes.mixins.json"
   ],
-
   "depends": {
-    "fabricloader": ">=0.14.21",
-    "fabric": "*",
-    "minecraft": "~1.20",
-    "java": ">=17"
+    "fabricloader": ">=0.15.10",
+    "minecraft": "~1.20.5",
+    "java": ">=21",
+    "fabric-api": "*"
   },
   "suggests": {
     "another-mod": "*"

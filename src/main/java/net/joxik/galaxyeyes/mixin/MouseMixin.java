@@ -1,6 +1,6 @@
-package net.joxik.galaxy_eyes.mixin;
+package net.joxik.galaxyeyes.mixin;
 
-import net.joxik.galaxy_eyes.GalaxyEyes;
+import net.joxik.galaxyeyes.GalaxyEyes;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

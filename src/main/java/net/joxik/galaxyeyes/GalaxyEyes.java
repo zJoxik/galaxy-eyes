@@ -1,4 +1,4 @@
-package net.joxik.galaxy_eyes;
+package net.joxik.galaxyeyes;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -25,14 +25,14 @@ public class GalaxyEyes implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        keyBind = new KeyBinding("key.galaxy_eyes.zoom", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_C, "category.galaxy_eyes.zoom");
+        keyBind = new KeyBinding("galaxyeyes.key.zoom", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_C, "galaxyeyes.category.zoom");
         KeyBindingHelper.registerKeyBinding(keyBind);
     }
 
     public static void onZoomActivated() {
+        if (isZoomActive) return;
         setZoomMouseSens();
 
-        if (isZoomActive) return;
         MC.gameRenderer.setRenderHand(false);
         isZoomActive = true;
     }
@@ -51,9 +51,10 @@ public class GalaxyEyes implements ClientModInitializer {
                 zoomSensitivity = (zoomFov == 1.0) ? 4.0 : 5.0;
             }
             zoomFov = Math.max(MIN_ZOOM_FOV, Math.min(MAX_ZOOM_FOV, zoomFov + (-vertical * zoomSensitivity)));
-            MC.player.sendMessage(Text.translatable("message.galaxy_eyes.zoom", zoomFov).fillStyle(Style.EMPTY.withColor(Formatting.GREEN)), true);
+            MC.player.sendMessage(Text.translatable("galaxyeyes.message.zoom", zoomFov).fillStyle(Style.EMPTY.withColor(Formatting.GREEN)), true);
 
             zoomSensitivity = 1.0;
+            setZoomMouseSens();
             return true;
         }
 
